@@ -22,8 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<RootComponent />} />
             <Route path="/masuk" element={<RootForm />} />
-          </Routes>
-        </BrowserRouter>
+        </Routes>
+        
         <PriceHold />
         <Class />
         <Testimoni />
@@ -32,6 +32,7 @@ function App() {
         <Skills />
         <Portfolio /> */}
         <Footer />
+        </BrowserRouter>
       </div>
     </>
   );
