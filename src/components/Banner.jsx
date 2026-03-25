@@ -2,7 +2,7 @@ function Banner() {
   return (
     <>
       <section className="w-full flex justify-center py-24 px-4">
-        <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg py-8 px-8 sm:px-12 transition duration-300 mb-9 text-center">
+        <div className="w-[990px] max-sm:max-w-3xl bg-white rounded-2xl shadow-lg py-8 px-8 sm:px-12 transition duration-300 mb-9 text-center">
           <h1 className="text-2xl sm:text-3xl font-medium text-[#333333] w-[211px] h-[29px] mx-auto">Sekolah Digital</h1>
           <h2 className="mt-2 text-4xl sm:text-6xl font-bold text-[#333333] mb-5">Minerva</h2>
           <p className="mt-4 text-base sm:text-lg text-[#333333]">

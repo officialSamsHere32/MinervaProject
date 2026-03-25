@@ -4,11 +4,11 @@ function PriceHold() {
     return (
     <>
         <section className="w-full flex justify-center py-24 px-4">
-            <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg transition duration-300 text-center flex">
+            <div className="w-[990px] max-sm:max-w-3xl bg-white rounded-2xl shadow-lg transition duration-300 text-center flex">
                 <img src={pic} className="w-[50%] rounded-xl"></img>
                 <div className="p-3">
                     <h1 className="w-[240px] h-[43px] text-[29px] font-bold text-left text-[#333333]">Harga Kelas</h1>
-                    <h2 className="flex w-[270px] h-[auto] text-[36px] font-bold text-left text-[#333333]">Rp 100.000</h2><h3 className="text-[24px] font-bold text-left text-[#333333] mt-[10px]">/jam</h3>
+                    <h2 className="flex w-[270px] h-[auto] text-[36px] font-bold text-left text-[#333333]">Rp 100.000<h3 className="text-[24px] font-bold text-left text-[#333333] mt-[10px]">/jam</h3></h2>
                     <h2 className="flex w-[270px] h-[auto] text-[20px] font-bold text-left text-[#333333] mb-4">Setiap hari | 08.00 - 22.00</h2>
                     {/* Checkmark */}
                     <ul className="space-y-1 text-gray-700">

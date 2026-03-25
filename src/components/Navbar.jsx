@@ -5,7 +5,7 @@ const navItems = [
   { id: 1, text: "Home", href: "#home" },
   { id: 2, text: "Testimoni", href: "#about" },
   { id: 3, text: "Contact", href: "#contact" },
-  { id: 4, text: "Masuk", href: "#masuk" }
+  { id: 4, text: "Masuk", href: "/masuk" }
 ];
 
 function Navbar() {

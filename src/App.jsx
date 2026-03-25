@@ -5,9 +5,9 @@ import PriceHold from "./components/Price.jsx";
 import Class from "./components/Class.jsx";
 import Testimoni from "./components/Testimoni.jsx";
 // import CardSection from "./components/card-section.jsx";
-// import RootForm from "./components/form/RootForm.jsx";
+import RootForm from "./components/form/RootForm.jsx";
 // import History from "./components/History.jsx";
-// import Footer from "./components/Footer.jsx";
+import Footer from "./components/Footer.jsx";
 // import Portfolio from "./components/portfolio.jsx";
 // import GridLayout from "./components/GridLayout.jsx";
 // import Skills from "./components/skills.jsx";
@@ -21,6 +21,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<RootComponent />} />
+            <Route path="/masuk" element={<RootForm />} />
           </Routes>
         </BrowserRouter>
         <PriceHold />
@@ -29,8 +30,8 @@ function App() {
         {/* <CardSection />
         <History />
         <Skills />
-        <Portfolio />
-        <Footer /> */}
+        <Portfolio /> */}
+        <Footer />
       </div>
     </>
   );
