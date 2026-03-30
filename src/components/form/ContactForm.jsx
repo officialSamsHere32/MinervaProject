@@ -1,27 +1,25 @@
 import {useState} from 'react' 
 import InputField from '../ui/InputField'
 import TextAreaField from '../ui/TextAreaField'
-import Button from '../ui/Button'
+import Button from '../ui/Button1'
 import validate from '../../validation/validation'
+import Button2 from '../ui/Button2'
 
 export default function ContactForm({
   onSubmit,
-  title = "Contact Us",
-  submitLabel = "Send Message",
+  title = "Masuk",
+  submitLabel = "Logged in!",
+  Google = ""
 }) {
  // hooks
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    subject: "",
-    message: "",
+    password: "",
   })
 // hooks for error handling
   const [errors, setErrors] = useState({
     name: "",
-    email: "",
-    subject: "",
-    message: "",
+    password: "",
   })
 
    //handle change untuk semua field, menggunakan name attribute untuk menentukan field mana yang berubah
@@ -48,49 +46,31 @@ export default function ContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-      <h2 className="text-2xl font-bold text-slate-800 text-center">{title}</h2>
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col">
+      <h2 className="text-[40px] font-bold text-slate-800 text-center">{title}</h2>
+      <p className='text-[18px] font-base text-[#333333] text-center mb-10'>masuk terlebih dahulu</p>
       <InputField
         id="name"
-        label="Full Name"
         value={formData.name}
         onChange={handleChange}
         error={errors.name}
-        placeholder="John Doe"
+        placeholder="Username"
         autoComplete="name"
       />
 
-      <InputField
-        id="email"
-        label="Email Address"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        error={errors.email}
-        placeholder="john@example.com"
-        autoComplete="email"
-      />
-
-      <InputField
-        id="subject"
-        label="Subject"
-        value={formData.subject}
-        onChange={handleChange}
-        error={errors.subject}
-        placeholder="How can we help you?"
-      />
-
       <TextAreaField
-        id="message"
-        label="Message"
-        value={formData.message}
+        id="password"
+        type="password"
+        value={formData.password}
         onChange={handleChange}
-        error={errors.message}
-        placeholder="Write your message here..."
-        rows={5}
+        error={errors.password}
+        placeholder="Password"
+        autoComplete="password"
       />
 
       <Button type='submit'>{submitLabel}</Button>
+      <p className='text-[11px] font-semibold text-[#C4C4C4] text-center'>- or -</p>
+      <Button2 type='submit'>{Google}</Button2>
     </form>
   )
 }

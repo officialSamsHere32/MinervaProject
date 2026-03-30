@@ -1,4 +1,4 @@
-import Banner from "./Banner";
+
 import Navbar from "./Navbar";
 
 const RootComponent = () => {
@@ -6,7 +6,6 @@ const RootComponent = () => {
     <>
       <div>
         <Navbar />
-        <Banner />
       </div>
     </>
   );
