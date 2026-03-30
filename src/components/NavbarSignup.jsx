@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Minerva from "../assets/Minerva.png";
 
 const navItems = [
-  { id: 1, text: "Home", href: "#home" },
-  { id: 2, text: "Daftar", href: "#about" },
+  { id: 1, text: "Home", href: "/" },
+  { id: 2, text: "Daftar", href: "/login" },
 ];
 
 function Navbar() {
