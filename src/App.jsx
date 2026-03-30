@@ -8,7 +8,7 @@ import RootForm from "./components/form/RootForm.jsx";
 // import History from "./components/History.jsx";
 import Footer from "./components/Footer.jsx";
 import Banner from "./components/Banner.jsx";
-import NavbarS from "./components/NavbarSignup.jsx";
+import RootFormDaftar from "./components/form/RootFormDaftar.jsx"
 // import Portfolio from "./components/portfolio.jsx";
 // import GridLayout from "./components/GridLayout.jsx";
 // import Skills from "./components/skills.jsx";
@@ -32,6 +32,9 @@ function App() {
             <Route path="/masuk" element={
               <RootForm />
               } />
+            <Route path="/register" element={
+              <RootFormDaftar />
+            } />
           </Routes>
         </BrowserRouter>
         {/* <CardSection />

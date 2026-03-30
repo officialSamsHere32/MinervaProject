@@ -3,10 +3,10 @@ import Minerva from "../assets/Minerva.png";
 
 const navItems = [
   { id: 1, text: "Home", href: "/" },
-  { id: 2, text: "Daftar", href: "/login" },
+  { id: 2, text: "Login", href: "/masuk" },
 ];
 
-function Navbar() {
+function NavbarRegister() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -20,8 +20,8 @@ function Navbar() {
   return (
     <>
       {/* Navbar Container */}
-      <nav className="fixed w-full shadow-md bg-[#0080FF] top-0 z-50">
-        <div className="max-w-[1200px] mx-auto px-6 h-[70px] flex items-center gap-16">
+      <nav className="fixed w-full bg-[#0080FF] top-0 z-50">
+        <div className="max-w-[1200px] mx-auto px-6 h-[52px] flex items-center gap-16">
           
           {/* Logo */}
           <img 
@@ -91,4 +91,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarRegister;

@@ -1,7 +1,7 @@
 // import LayoutWrapper from "../layout/LayoutWrapper"
 import LayoutWrapper from '../layout/LayoutWrapper';
-import NavbarS from '../NavbarLogin';
-import ContactForm from "./ContactForm"
+import NavbarRegister from '../NavbarRegister';
+import ContactFormRegister from "./ContactFormRegister"
 
 export default function RootForm() {
 const handleContact = (formData) => {
@@ -10,11 +10,11 @@ const handleContact = (formData) => {
 
 return (
     <>
-      <NavbarS />
+      <NavbarRegister />
       <LayoutWrapper>
-        <ContactForm
+        <ContactFormRegister
           onSubmit={handleContact}
-          title="Masuk"
+          title="Daftar"
           submitLabel="Masuk"
           Google='Google'
         />

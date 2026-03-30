@@ -7,19 +7,21 @@ import Button2 from '../ui/Button2'
 
 export default function ContactForm({
   onSubmit,
-  title = "Masuk",
-  submitLabel = "Logged in!",
+  title = "Daftar",
+  submitLabel = "Registered!",
   Google = ""
 }) {
  // hooks
   const [formData, setFormData] = useState({
     name: "",
     password: "",
+    Konfirmasi: "",
   })
 // hooks for error handling
   const [errors, setErrors] = useState({
     name: "",
     password: "",
+    Konfirmasi: "",
   })
 
    //handle change untuk semua field, menggunakan name attribute untuk menentukan field mana yang berubah
@@ -48,7 +50,7 @@ export default function ContactForm({
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col pb-0">
       <h2 className="text-[40px] font-bold text-slate-800 text-center">{title}</h2>
-      <p className='text-[18px] font-base text-[#333333] text-center mb-10'>masuk terlebih dahulu</p>
+      <p className='text-[18px] font-base text-[#333333] text-center mb-10'>Daftar dan bergabung ke <br /> dalam kelas</p>
       <InputField
         id="name"
         value={formData.name}
@@ -58,7 +60,7 @@ export default function ContactForm({
         autoComplete="name"
       />
 
-      <TextAreaField
+      <InputField
         id="password"
         type="password"
         value={formData.password}
@@ -67,11 +69,21 @@ export default function ContactForm({
         placeholder="Password"
         autoComplete="password"
       />
+      <TextAreaField
+        id="Konfirmasi"
+        type="password"
+        value={formData.Konfirmasi}
+        onChange={handleChange}
+        error={errors.Konfirmasi}
+        placeholder="Konfirmasi Password"
+        autoComplete="new-password"
+      />
 
+    <div className="flex gap-4 mt-6">
       <Button type='submit'>{submitLabel}</Button>
-      <p className='text-[11px] font-semibold text-[#C4C4C4] text-center'>- or -</p>
       <Button2 type='submit'>{Google}</Button2>
-      <p className='text-center text-sm mt-4 flex mx-auto gap-1'>Belum punya akun? <a href="/register" className='text-center text-sm text-blue-500'> Daftar</a></p>
+      </div>
+      <p className='text-center text-sm mt-4 flex mx-auto gap-1'>Belum punya akun? <a href="/masuk" className='text-center text-sm text-blue-500'> Login</a></p>
     </form>
   )
 }
