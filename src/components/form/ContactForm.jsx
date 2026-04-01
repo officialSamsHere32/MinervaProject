@@ -1,9 +1,9 @@
 import {useState} from 'react' 
 import InputField from '../ui/InputField'
-import TextAreaField from '../ui/TextAreaField'
 import Button from '../ui/Button1'
-import validate from '../../validation/validation'
+import { validateLogin } from '../../validation/validation'
 import Button2 from '../ui/Button2'
+import { login } from '../../services/authService'
 
 export default function ContactForm({
   onSubmit,
@@ -21,6 +21,7 @@ export default function ContactForm({
     name: "",
     password: "",
   })
+  const [isLoading, setIsLoading] = useState(false)
 
    //handle change untuk semua field, menggunakan name attribute untuk menentukan field mana yang berubah
   const handleChange = (e) => {
@@ -32,45 +33,65 @@ export default function ContactForm({
    //trigger validation saat submit, jika validasi berhasil maka panggil onSubmit dengan formData
   const handleSubmit = (e) => {
     e.preventDefault()      
-    // setisName("samuel christian")
-    // function validate akan mengembalikan object error, jika field valid maka value error akan tetap string kosong
-    const validationErrors = validate(formData)
+    setIsLoading(true)
+    
+    // Validate form data
+    const validationErrors = validateLogin(formData)
     setErrors(validationErrors)
-    // object.values akan mengembalikan array dari semua value di object errors, lalu some akan mengecek apakah ada value yang tidak kosong (artinya ada error)
+    
     const hasErrors = Object.values(validationErrors).some((msg) => msg !== "")
     if (hasErrors) {
-      alert("Cannot complete the process..")
-    } else {
-      onSubmit(formData)
+      setIsLoading(false)
+      alert("Please fix the errors before submitting.")
+      return
     }
+    
+    // Attempt login
+    const result = login(formData.name, formData.password)
+    
+    if (result.success) {
+      alert(result.message)
+      onSubmit(result.user)
+      // Reset form
+      setFormData({ name: "", password: "" })
+    } else {
+      alert(result.message)
+      setErrors({
+        name: formData.name ? "" : "Username is required.",
+        password: result.message
+      })
+    }
+    
+    setIsLoading(false)
   }
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col pb-0">
       <h2 className="text-[40px] font-bold text-slate-800 text-center">{title}</h2>
-      <p className='text-[18px] font-base text-[#333333] text-center mb-10'>masuk terlebih dahulu</p>
+      <p className='text-[18px] font-base text-[#333333] text-center mb-10'>Masuk ke akun Anda <br /> untuk melanjutkan</p>
       <InputField
         id="name"
         value={formData.name}
         onChange={handleChange}
         error={errors.name}
         placeholder="Username"
-        autoComplete="name"
+        autoComplete="username"
       />
 
-      <TextAreaField
+      <InputField
         id="password"
         type="password"
         value={formData.password}
         onChange={handleChange}
         error={errors.password}
         placeholder="Password"
-        autoComplete="password"
+        autoComplete="current-password"
       />
 
-      <Button type='submit'>{submitLabel}</Button>
-      <p className='text-[11px] font-semibold text-[#C4C4C4] text-center'>- or -</p>
-      <Button2 type='submit'>{Google}</Button2>
+    <div className="flex gap-4 mt-6">
+      <Button type='submit' disabled={isLoading}>{isLoading ? 'Tunggu...' : submitLabel}</Button>
+      <Button2 type='button'>{Google}</Button2>
+      </div>
       <p className='text-center text-sm mt-4 flex mx-auto gap-1'>Belum punya akun? <a href="/register" className='text-center text-sm text-blue-500'> Daftar</a></p>
     </form>
   )

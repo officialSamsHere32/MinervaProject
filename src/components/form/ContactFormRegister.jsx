@@ -2,10 +2,11 @@ import {useState} from 'react'
 import InputField from '../ui/InputField'
 import TextAreaField from '../ui/TextAreaField'
 import Button from '../ui/Button1'
-import validate from '../../validation/validation'
+import { validateRegister } from '../../validation/validation'
 import Button2 from '../ui/Button2'
+import { register } from '../../services/authService'
 
-export default function ContactForm({
+export default function ContactFormRegister({
   onSubmit,
   title = "Daftar",
   submitLabel = "Registered!",
@@ -23,6 +24,7 @@ export default function ContactForm({
     password: "",
     Konfirmasi: "",
   })
+  const [isLoading, setIsLoading] = useState(false)
 
    //handle change untuk semua field, menggunakan name attribute untuk menentukan field mana yang berubah
   const handleChange = (e) => {
@@ -34,17 +36,37 @@ export default function ContactForm({
    //trigger validation saat submit, jika validasi berhasil maka panggil onSubmit dengan formData
   const handleSubmit = (e) => {
     e.preventDefault()      
-    // setisName("samuel christian")
-    // function validate akan mengembalikan object error, jika field valid maka value error akan tetap string kosong
-    const validationErrors = validate(formData)
+    setIsLoading(true)
+    
+    // Validate form data
+    const validationErrors = validateRegister(formData)
     setErrors(validationErrors)
-    // object.values akan mengembalikan array dari semua value di object errors, lalu some akan mengecek apakah ada value yang tidak kosong (artinya ada error)
+    
     const hasErrors = Object.values(validationErrors).some((msg) => msg !== "")
     if (hasErrors) {
-      alert("Cannot complete the process..")
-    } else {
-      onSubmit(formData)
+      setIsLoading(false)
+      alert("Please fix the errors before submitting.")
+      return
     }
+    
+    // Attempt registration
+    const result = register(formData.name, formData.password)
+    
+    if (result.success) {
+      alert(result.message)
+      onSubmit(result.user)
+      // Reset form
+      setFormData({ name: "", password: "", Konfirmasi: "" })
+    } else {
+      alert(result.message)
+      setErrors({
+        name: result.message.includes('Username') ? result.message : "",
+        password: "",
+        Konfirmasi: ""
+      })
+    }
+    
+    setIsLoading(false)
   }
 
   return (
@@ -57,7 +79,7 @@ export default function ContactForm({
         onChange={handleChange}
         error={errors.name}
         placeholder="Username"
-        autoComplete="name"
+        autoComplete="username"
       />
 
       <InputField
@@ -67,7 +89,7 @@ export default function ContactForm({
         onChange={handleChange}
         error={errors.password}
         placeholder="Password"
-        autoComplete="password"
+        autoComplete="new-password"
       />
       <TextAreaField
         id="Konfirmasi"
@@ -80,10 +102,10 @@ export default function ContactForm({
       />
 
     <div className="flex gap-4 mt-6">
-      <Button type='submit'>{submitLabel}</Button>
-      <Button2 type='submit'>{Google}</Button2>
+      <Button type='submit' disabled={isLoading}>{isLoading ? 'Tunggu...' : submitLabel}</Button>
+      <Button2 type='button'>{Google}</Button2>
       </div>
-      <p className='text-center text-sm mt-4 flex mx-auto gap-1'>Belum punya akun? <a href="/masuk" className='text-center text-sm text-blue-500'> Login</a></p>
+      <p className='text-center text-sm mt-4 flex mx-auto gap-1'>Sudah punya akun? <a href="/masuk" className='text-center text-sm text-blue-500'> Masuk</a></p>
     </form>
   )
 }

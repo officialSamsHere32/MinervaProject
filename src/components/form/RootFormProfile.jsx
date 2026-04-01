@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import LayoutWrapper from '../layout/LayoutWrapper';
-import NavbarS from '../NavbarLogin';
-import ContactForm from "./ContactForm"
+import NavbarProfile from '../NavbarProfile';
+import Profile from '../profile';
 
 export default function RootForm() {
   const navigate = useNavigate()
@@ -17,15 +17,9 @@ export default function RootForm() {
 
   return (
     <>
-      <NavbarS />
-      <LayoutWrapper>
-        <ContactForm
-          onSubmit={handleLogin}
-          title="Masuk"
-          submitLabel="Masuk"
-          Google='Google'
+      <NavbarProfile />
+        <Profile
         />
-      </LayoutWrapper>
     </>
   )
 }

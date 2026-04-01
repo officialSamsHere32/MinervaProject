@@ -8,7 +8,9 @@ import RootForm from "./components/form/RootForm.jsx";
 // import History from "./components/History.jsx";
 import Footer from "./components/Footer.jsx";
 import Banner from "./components/Banner.jsx";
+import RootFormProfile from "./components/form/RootFormProfile.jsx";
 import RootFormDaftar from "./components/form/RootFormDaftar.jsx"
+import NavbarProfile from "./components/NavbarProfile.jsx";
 // import Portfolio from "./components/portfolio.jsx";
 // import GridLayout from "./components/GridLayout.jsx";
 // import Skills from "./components/skills.jsx";
@@ -27,6 +29,7 @@ function App() {
                 <PriceHold />
                 <Class />
                 <Testimoni />
+                <Footer />
               </>
             } />
             <Route path="/masuk" element={
@@ -35,13 +38,15 @@ function App() {
             <Route path="/register" element={
               <RootFormDaftar />
             } />
+            <Route path="/profile" element={
+              <RootFormProfile />
+            } />
           </Routes>
         </BrowserRouter>
         {/* <CardSection />
         <History />
         <Skills />
         <Portfolio /> */}
-        <Footer />
       </div>
     </>
   );

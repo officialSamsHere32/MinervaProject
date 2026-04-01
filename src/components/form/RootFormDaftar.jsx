@@ -1,21 +1,28 @@
-// import LayoutWrapper from "../layout/LayoutWrapper"
+import { useNavigate } from 'react-router-dom'
 import LayoutWrapper from '../layout/LayoutWrapper';
 import NavbarRegister from '../NavbarRegister';
 import ContactFormRegister from "./ContactFormRegister"
 
-export default function RootForm() {
-const handleContact = (formData) => {
-    console.log("Contact form submitted:", formData)
+export default function RootFormDaftar() {
+  const navigate = useNavigate()
+
+  const handleRegister = (user) => {
+    // User successfully registered
+    console.log("User registered:", user)
+    // Redirect to login page after successful registration
+    setTimeout(() => {
+      navigate('/masuk')
+    }, 1000)
   }
 
-return (
+  return (
     <>
       <NavbarRegister />
       <LayoutWrapper>
         <ContactFormRegister
-          onSubmit={handleContact}
+          onSubmit={handleRegister}
           title="Daftar"
-          submitLabel="Masuk"
+          submitLabel="Daftar"
           Google='Google'
         />
       </LayoutWrapper>
